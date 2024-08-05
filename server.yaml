@@ -1,0 +1,13 @@
+base:
+  name: mini-rbac
+  port: 8000
+  api:
+    prefix: /api
+    path: ./api
+db:
+  base:
+    driver: sqlite3
+    dsn: "db/data.db"
+    migrate: "./migrations"
+    version: "2"
+    autoapi: true
