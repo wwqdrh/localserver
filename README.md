@@ -30,3 +30,9 @@
 ## screenshot
 
 <img src="./docs/pic1.png" />
+
+- 数据查询: [get]/api/orm/base/数据表?查询字段=值 不带查询字段就是获取表中所有数据
+- 数据删除: [delete]/api/orm/base/数据表 jsonbody
+- 数据新增: [put]/api/orm/base/数据表 jsonbody
+- 数据修改: [post]/api/orm/base/数据表?查询字段=值 jsonbody
+
