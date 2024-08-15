@@ -36,3 +36,18 @@
 - 数据新增: [put]/api/orm/base/数据表 jsonbody
 - 数据修改: [post]/api/orm/base/数据表?查询字段=值 jsonbody
 
+## 前端
+
+```bash
+openssl genrsa -out private.pem 2048
+
+openssl rsa -in private.pem -pubout -out public.pem
+
+openssl rsa -in public.pem -pubin -outform PEM -pubout -out public_spki.pem
+```
+
+```bash
+pnpm i
+
+pnpm dev
+```

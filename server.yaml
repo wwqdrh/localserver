@@ -1,9 +1,21 @@
 base:
   name: mini-rbac
   port: 8000
+  envfile: "./.env"
+  noextra: false
+  extra: "pnpm run dev"
   api:
     prefix: /api
     path: ./api
+middlewares:
+  jwt:
+    id: jwt
+    opts:
+      algo: "RS256"
+      publicFile: public.pem
+      privateFile: private.pem
+      lookup: cookie:edgeserver-token,header:edgeserver-token
+      timeout: 120
 db:
   base:
     driver: sqlite3
