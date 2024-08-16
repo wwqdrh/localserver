@@ -9,7 +9,7 @@ local res = state.orm()
     .where({
         "email = ?", ctx.req("email")
     })
-    .find()
+    .find({})
     .exec("base")
 
 if res.err ~= nil then

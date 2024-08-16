@@ -4,10 +4,15 @@
 local userInfo = ctx.middleware("jwt", "info").user
 local res = state.orm()
     .table({"users"})
+    .select({"users.*", "r.role_name role_name"})
+    .joins({
+        {"JOIN user_roles ur ON ur.user_id = users.user_id"},
+        {"JOIN roles r ON r.role_id = ur.role_id"},
+    })
     .where({
         "email = ?", userInfo.email
     })
-    .find()
+    .find({{"combine", "role_name"}})
     .exec("base")
 
 ctx.json(200, {
@@ -15,6 +20,6 @@ ctx.json(200, {
     name=res.res[1].username,
     imageUrl=res.res[1].avatar,
     email=res.res[1].email,
-    role="user",
+    role=res.res[1].role_name,
     isActive=true
 })
