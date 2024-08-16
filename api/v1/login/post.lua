@@ -25,8 +25,9 @@ end
 
 local tokenData, err = ctx.middleware("jwt", "token", {
     user={
-        uuid=res.res[1].id,
+        id=res.res[1].id,
         name=res.res[1].username,
+        imageUrl=res.res[1].avatar,
         email=res.res[1].email,
         role="user",
         isActive=true
