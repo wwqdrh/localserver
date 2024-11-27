@@ -1,0 +1,16 @@
+base:
+  name: gameserver
+  version: "0.0.1"
+  port: 8000
+  api:
+    prefix: /api
+    path: ./api
+auth:
+  enable: false
+db:
+  base:
+    driver: sqlite3
+    dsn: "./data/data.db"
+    migrate: "./migrations"
+    version: "2"
+    autoapi: true

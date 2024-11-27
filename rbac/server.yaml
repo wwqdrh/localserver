@@ -4,6 +4,7 @@ base:
   envfile: "./.env"
   noextra: false
   extra: "pnpm run dev"
+  admin: true
   api:
     prefix: /api
     path: ./api

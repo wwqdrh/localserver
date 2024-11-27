@@ -1,0 +1,1 @@
+ctx.json(200, {msg = "pong"})
