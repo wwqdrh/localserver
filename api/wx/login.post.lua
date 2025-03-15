@@ -31,7 +31,7 @@ end
 
 local user_phone = json.query(content, "phone_info.phoneNumber")
 if user_phone == "null" then
-    ctx.json(500, {msg="获取用户手机号失败，登录失败"})
+    ctx.json(500, {msg="获取用户手机号失败，登录失败", detail=content})
     return
 end
 
