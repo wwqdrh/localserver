@@ -55,7 +55,7 @@ if res.err ~= nil then
     ctx.json(400, {msg="用户登录失败"})
     return
 end
-
+print("find user success: " .. json.encode(res.res))
 -- 判断是否是管理员，如果是的话那么将管理员的token一起创建了
 local isadmin = funcs.call("isadmin", {phone=res.res.phone}) == "true"
 local tokenData, err = ctx.middleware("jwt", "token", {
@@ -71,8 +71,10 @@ if err ~= nil then
     ctx.json(500, {msg="用户登录失败", desc=err})
     return
 end
+print("create jwt token success")
 
 if isadmin then
+    print("is admin")
     local admin_res = funcs.call("gen_admin_token", {phone=res.res.phone})
     ctx.json(200, {
         msg="登录成功",
@@ -83,6 +85,7 @@ if isadmin then
         admin=json.decode(admin_res)
     })
 else
+    print("is not admin")
     ctx.json(200, {
         msg="登录成功",
         accessToken=tokenData.token,
