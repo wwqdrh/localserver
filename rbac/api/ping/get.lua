@@ -1,1 +1,0 @@
-ctx.str(200, "pong")

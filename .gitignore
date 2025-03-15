@@ -1,1 +1,14 @@
 .DS_Store
+dist/
+deploy_versions/
+.temp/
+.rn_temp/
+node_modules/
+.DS_Store
+.swc
+db
+.env
+.env.prod
+assets/*.pem
+encrypt.sh
+.env.local
