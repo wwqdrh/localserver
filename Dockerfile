@@ -1,4 +1,4 @@
-FROM hrdqww/edge-mini:0.2.0
+FROM hrdqww/edge-mini:0.2.1
 
 COPY . /app/
 
