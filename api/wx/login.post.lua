@@ -15,6 +15,7 @@ if access_token == "null" then
     ctx.json(500, {msg="获取access_token失败, access_token为空", detail=json.query(token_data, "err")})
     return
 end
+print("get access token: " .. access_token)
 
 content, err = osx.fetch("https://api.weixin.qq.com/wxa/business/getuserphonenumber", "post", {
     query={
@@ -34,7 +35,7 @@ if user_phone == "null" then
     ctx.json(500, {msg="获取用户手机号失败，登录失败", detail=content})
     return
 end
-
+print("get user phone: " .. user_phone)
 local res = state.orm()
     .table({"users"})
     .select({
