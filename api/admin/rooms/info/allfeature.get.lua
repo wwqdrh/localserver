@@ -3,6 +3,7 @@
 
 local res = state.orm()
     .table({"room_feature"})
+    .select({"id", "mode", "title", "icon"})
     .where({"mode=?", 0})
     .find({})
     .exec("base", false)

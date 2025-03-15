@@ -2,6 +2,7 @@
 
 local res = state.orm()
     .table({"room_type"})
+    .select({"id", "name"})
     .find({})
     .exec("base", false)
 
