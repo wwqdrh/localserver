@@ -14,7 +14,7 @@ local res = state.orm()
     .joins({
         {"JOIN coupon_instance ON coupon_instance.coupon_id = coupon_definition.id"}
     })
-    .first({"coupon_instance.user_id=? AND coupon_definition.id=? AND coupon_instance.deleted_at IS NULL", userInfo.id, ctx.req("id")})
+    .first({{"coupon_instance.user_id=? AND coupon_definition.id=? AND coupon_instance.deleted_at IS NULL", userInfo.id, ctx.req("id")}})
     .exec("base", false)
 
 if res.err ~= nil then

@@ -1,5 +1,4 @@
 -- description=验证码
--- middlewares=jwt
 -- request=[
 --   {"name": "query@name", "type": "string", "required": true}
 -- ]

@@ -15,7 +15,9 @@ local res = state.orm()
     .joins({
         {"JOIN rooms ON orders.roomid = rooms.id"}
     })
-    .first({"orders.id = ?", ctx.req("id")})
+    .first({
+        {"orders.id = ?", ctx.req("id")}
+    })
     .exec("base", false)
 
 if res.err ~= nil then

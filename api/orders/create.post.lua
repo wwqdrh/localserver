@@ -45,7 +45,7 @@ if ctx.reqhas("couponid") then
         .joins({
             {"JOIN coupon_instance ON coupon_instance.coupon_id = coupon_definition.id"}
         })
-        .first({"coupon_instance.user_id=? AND coupon_definition.id=? AND coupon_instance.deleted_at IS NULL", userId, ctx.req("couponid")})
+        .first({{"coupon_instance.user_id=? AND coupon_definition.id=? AND coupon_instance.deleted_at IS NULL", userId, ctx.req("couponid")}})
         .exec("base", false)
 
     if couponinfo.err ~= nil or next(couponinfo.res) == nil then

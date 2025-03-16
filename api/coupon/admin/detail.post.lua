@@ -6,7 +6,7 @@
 
 local res = state.orm()
     .table({"coupon_definition"})
-    .first({"id = ?", ctx.req("id")})
+    .first({{"id = ?", ctx.req("id")}})
     .exec("base", false)
 
 if res.err ~= nil then
