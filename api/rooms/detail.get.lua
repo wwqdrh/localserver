@@ -6,9 +6,7 @@
 local res = state.orm()
     .table({"rooms"})
     .first({
-        "id=?", ctx.req("roomid")
-    })
-    .find({
+        {"id=?", ctx.req("roomid")},
         {"toArray", "slider_images"}
     })
     .exec("base", false)

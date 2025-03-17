@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS orders (
 -- Rooms table
 CREATE TABLE IF NOT EXISTS rooms (
     id SERIAL PRIMARY KEY,
-    door_number VARCHAR(50) UNIQUE NOT NULL,
+    room_count INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '房间数量',
     price INT NOT NULL,
     cover_image TEXT,
     slider_images TEXT,

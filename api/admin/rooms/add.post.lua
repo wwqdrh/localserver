@@ -1,7 +1,7 @@
 -- description=新增房源信息
 -- request=[
 --   {"name": "json@name", "type": "string", "required": true},
---   {"name": "json@door_number", "type": "string", "required": true},
+--   {"name": "json@room_count", "type": "int", "required": true},
 --   {"name": "json@price", "type": "int", "required": true},
 --   {"name": "json@status", "type": "int", "required": true},
 --   {"name": "json@description", "type": "string", "required": true},
@@ -20,7 +20,7 @@ local res = state.orm()
     .create({
         {
             name=ctx.req("name"),
-            door_number=ctx.req("door_number"),
+            room_count=ctx.req("room_count"),
             price=ctx.req("price"),
             status=ctx.req("status"),
             description=ctx.req("description"),

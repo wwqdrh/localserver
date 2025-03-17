@@ -1,6 +1,6 @@
 -- request=[
---    {"name": "query@page", "type": "int", "required": true},
---    {"name": "query@pagesize", "type": "int", "required": true}
+--    {"name": "query@page", "type": "int", "default": 1},
+--    {"name": "query@pagesize", "type": "int", "default": 10}
 -- ]
 -- middlewares=jwt_admin@match,role,2|10
 

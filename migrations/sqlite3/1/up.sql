@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS orders (
 -- features, 使用,分割的id
 CREATE TABLE IF NOT EXISTS rooms (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    door_number TEXT UNIQUE NOT NULL,
+    room_count INTEGER NOT NULL DEFAULT 0,
     price INTEGER NOT NULL,
     cover_image TEXT,
     slider_images TEXT,

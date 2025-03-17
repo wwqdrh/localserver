@@ -17,17 +17,17 @@ local res = state.orm()
             (booking.book_start < ? AND booking.book_end > ?)\
         )", ctx.req("roomid"), ctx.req("end_date"), ctx.req("start_date")
     })
-    .find({
-        {"unique", "id"}
-    })
+    .find({})
     .exec("base", false)
 
-if res.err ~= nil or next(res.res) ~= nil then
+if res.err ~= nil then
     ctx.json(400, {
-        code=40001,
-        msg="订单时间冲突，请返回首页选择时间后再来吧"
+        msg=res.err
     })
-else
+    return
+end
+
+if next(res.res) == nil or #res.res < res.res[1].room_count then
     ctx.json(200, {
         msg="ok",
         data=res.res

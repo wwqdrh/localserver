@@ -24,7 +24,7 @@ local canbook, err = funcs.call("checkbook", {
 })
 if err ~= nil or canbook == "false" then
     ctx.json(400, {
-        code=40001,
+        code=4001,
         msg="订单时间冲突，请返回首页选择时间后再来吧"
     })
     return

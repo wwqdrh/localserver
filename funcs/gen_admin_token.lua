@@ -9,7 +9,7 @@ function index(phone)
             "id", "role"
         })
         .first({
-            "phone=?", phone,
+            {"phone=?", phone},
         })
         .exec("base", false)
 

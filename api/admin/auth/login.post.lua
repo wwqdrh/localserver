@@ -10,7 +10,7 @@ local res = state.orm()
         "id", "role"
     })
     .first({
-        "phone=?", user_phone,
+        {"phone=?", user_phone},
     })
     .exec("base", false)
 

@@ -1,8 +1,8 @@
 -- description=新增房源信息
 -- request=[
---   {"name": "json@id", "type": "int"},
+--   {"name": "json@id", "type": "int", "required": true},
 --   {"name": "json@name", "type": "string"},
---   {"name": "json@door_number", "type": "string"},
+--   {"name": "json@room_count", "type": "int"},
 --   {"name": "json@price", "type": "string"},
 --   {"name": "json@status", "type": "int"},
 --   {"name": "json@description", "type": "string"},
@@ -16,11 +16,7 @@
 -- ]
 -- middlewares=jwt_admin@match,role,1|2|10
 
-if not ctx.reqhas("id") then
-    ctx.json(400, {msg="未传入id参数"})
-    return
-end
-
+print(ctx.req("room_count"))
 local res = state.orm()
     .table({"rooms"})
     .where({
@@ -29,7 +25,7 @@ local res = state.orm()
     .updates({
         {
             name=ctx.req("name"),
-            door_number=ctx.req("door_number"),
+            room_count=ctx.req("room_count"),
             price=ctx.req("price"),
             status=ctx.req("status"),
             description=ctx.req("description"),
@@ -45,10 +41,10 @@ local res = state.orm()
     .exec("base", false)
 
 if res.err ~= nil then
-    ctx.json(400, {msg="房间上架失败"})
+    ctx.json(400, {msg="房间信息修改失败"})
     return
 end
 
 ctx.json(200, {
-    msg="房间上架成功"
+    msg="房间信息修改成功"
 })

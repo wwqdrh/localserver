@@ -9,7 +9,6 @@ local res = state.orm()
     .select({
         "orders.*",
         "rooms.cover_image cover_image",
-        "rooms.door_number door_number",
         "rooms.typeid roomtype"
     })
     .joins({

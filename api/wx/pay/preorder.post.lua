@@ -10,7 +10,7 @@
 local res = state.orm()
     .table({"orders"})
     .first({
-        "out_trade_no=?", ctx.req("out_trade_no")
+        {"out_trade_no=?", ctx.req("out_trade_no")}
     })
     .find({})
     .exec("base", false)

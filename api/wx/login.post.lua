@@ -4,18 +4,12 @@
 -- description=小程序组件拿到动态code之后，使用这个code去调用接口获取手机号
 
 
-token_data, err = funcs.call("get_access_token", {})
-if err ~= nil then
-    ctx.json(500, {msg="获取access_token失败", desc=err})
-    return
-end
-
+token_data = funcs.call("get_access_token", {})
 access_token = json.query(token_data, "access_token")
 if access_token == "null" then
-    ctx.json(500, {msg="获取access_token失败, access_token为空", detail=json.query(token_data, "err")})
+    ctx.json(500, {msg="access_token为空", detail=json.query(token_data, "err")})
     return
 end
-print("get access token: " .. access_token)
 
 content, err = osx.fetch("https://api.weixin.qq.com/wxa/business/getuserphonenumber", "post", {
     query={
@@ -35,7 +29,6 @@ if user_phone == "null" then
     ctx.json(500, {msg="获取用户手机号失败，登录失败", detail=content})
     return
 end
-print("get user phone: " .. user_phone)
 local res = state.orm()
     .table({"users"})
     .select({
@@ -55,7 +48,6 @@ if res.err ~= nil then
     ctx.json(400, {msg="用户登录失败"})
     return
 end
-print("find user success: " .. json.encode(res.res))
 -- 判断是否是管理员，如果是的话那么将管理员的token一起创建了
 local isadmin = funcs.call("isadmin", {phone=res.res.phone}) == "true"
 local tokenData, err = ctx.middleware("jwt", "token", {
@@ -67,14 +59,13 @@ local tokenData, err = ctx.middleware("jwt", "token", {
         role=res.res.role
     }
 })
+print("find user success: " .. json.encode(res.res))
 if err ~= nil then
     ctx.json(500, {msg="用户登录失败", desc=err})
     return
 end
-print("create jwt token success")
 
 if isadmin then
-    print("is admin")
     local admin_res = funcs.call("gen_admin_token", {phone=res.res.phone})
     ctx.json(200, {
         msg="登录成功",
@@ -85,7 +76,6 @@ if isadmin then
         admin=json.decode(admin_res)
     })
 else
-    print("is not admin")
     ctx.json(200, {
         msg="登录成功",
         accessToken=tokenData.token,
